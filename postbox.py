@@ -15,7 +15,9 @@ import urllib.error
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QThread, Signal
-from PySide6.QtGui import QColor, QFont, QTextCursor
+from PySide6.QtGui import QColor, QFont, QTextCursor, QIcon, QPixmap, \
+    QPainter, QPen
+from PySide6.QtCore import QPoint
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget,
                                QVBoxLayout, QHBoxLayout, QLineEdit,
                                QPlainTextEdit, QComboBox, QPushButton,
@@ -69,10 +71,26 @@ class Worker(QThread):
                             "ms": (time.monotonic() - t0) * 1000})
 
 
+def mk_icon():
+    px = QPixmap(32, 32)
+    px.fill(Qt.transparent)
+    p = QPainter(px)
+    p.setRenderHint(QPainter.Antialiasing)
+    p.setPen(QPen(QColor("#4ea3ff"), 2))
+    p.setBrush(QColor("#1e4e7d"))
+    p.drawRoundedRect(3, 7, 26, 18, 3, 3)
+    p.setPen(QPen(QColor("#4ea3ff"), 2))
+    p.drawLine(4, 9, 16, 18)
+    p.drawLine(28, 9, 16, 18)
+    p.end()
+    return QIcon(px)
+
+
 class Win(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("postbox")
+        self.setWindowIcon(mk_icon())
         self.resize(1100, 720)
         self.worker = None
 
