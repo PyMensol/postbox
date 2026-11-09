@@ -1,12 +1,3 @@
-"""postbox - a local api tester, like a tiny postman.
-
-pick a method, paste a url, add headers/body, hit send.
-response shows pretty json + status + time. history keeps
-everything you sent.
-
-run: py -3.14 postbox.py
-"""
-
 import json
 import sys
 import time
