@@ -107,11 +107,13 @@ class Win(QMainWindow):
         self.body.setFont(QFont("Consolas", 10))
         self.body.setPlaceholderText('{"json": "body"}')
         self.tabs.addTab(self.body, "Body")
-        self.headers = QTableWidget(4, 2)
+        self.headers = QTableWidget(2, 2)
         self.headers.setHorizontalHeaderLabels(["header", "value"])
         self.headers.horizontalHeader().setSectionResizeMode(
             1, QHeaderView.Stretch)
-        self.headers.setItem(0, 0, None)
+        self.headers.setItem(0, 0, QTableWidgetItem("User-Agent"))
+        self.headers.setItem(0, 1, QTableWidgetItem("postbox"))
+        self.headers.itemChanged.connect(self._grow_rows)
         self.tabs.addTab(self.headers, "Headers")
 
         self.resp = QPlainTextEdit()
@@ -146,6 +148,12 @@ class Win(QMainWindow):
 
         self._load_history()
         self.statusBar().showMessage("ready")
+
+    def _grow_rows(self, item):
+        if item.row() == self.headers.rowCount() - 1 and item.text().strip():
+            self.headers.blockSignals(True)
+            self.headers.setRowCount(self.headers.rowCount() + 1)
+            self.headers.blockSignals(False)
 
     def _hdrs(self):
         out = {}
