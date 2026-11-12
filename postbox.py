@@ -245,23 +245,23 @@ def launch():
     app.setStyleSheet("""
         QMainWindow, QWidget, QDockWidget { background: %s; color: %s; }
         QLineEdit, QPlainTextEdit, QTableWidget, QListWidget, QComboBox {
-            background: %s; color: %s; border: 1px solid #222;
-            selection-background-color: #5a6b7d; }
-        QTabWidget::pane { border: 1px solid #222; }
+            background: %s; color: %s; border: 1px solid #3f3f46;
+            selection-background-color: #264f78; }
+        QTabWidget::pane { border: 1px solid #3f3f46; }
         QTabBar::tab { background: %s; color: %s; padding: 5px 14px; }
         QTabBar::tab:selected { background: %s; color: #fff; }
         QHeaderView::section { background: %s; color: %s; border: 0;
             padding: 4px; }
         QPushButton { background: %s; color: #fff; border: 0;
             padding: 5px 14px; }
-        QPushButton:hover { background: #5a5a5a; }
+        QPushButton:hover { background: #1177bb; }
         QDockWidget { font-weight: bold; }
         QDockWidget::title { background: %s; padding: 5px;
-            border-bottom: 1px solid #222; }
-        QStatusBar { background: #007acc; color: #fff; }
-        QSplitter::handle { background: #222; }
-    """ % (PANEL, TXT, BG, TXT, PANEL, TXT, BG, PANEL, TXT, "#4a4a4a",
-           "#3a3a3a"))
+            border-bottom: 1px solid #3f3f46; }
+        QStatusBar { background: #0e639c; color: #fff; }
+        QSplitter::handle { background: #3f3f46; }
+    """ % (PANEL, TXT, BG, TXT, PANEL, TXT, BG, PANEL, TXT, "#0e639c",
+           "#333336"))
     w = Win()
     w.show()
     if "--shot" in sys.argv:
